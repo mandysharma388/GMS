@@ -1,0 +1,265 @@
+﻿@model GMS_BOL.Cart
+@{
+    ViewBag.Title = "cart";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: Arial;
+            font-size: 17px;
+            padding: 8px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .row {
+            display: -ms-flexbox; /* IE10 */
+            display: flex;
+            -ms-flex-wrap: wrap; /* IE10 */
+            flex-wrap: wrap;
+            margin: 0 -16px;
+        }
+
+        .col-25 {
+            -ms-flex: 25%; /* IE10 */
+            flex: 25%;
+        }
+
+        .col-50 {
+            -ms-flex: 50%; /* IE10 */
+            flex: 50%;
+        }
+
+        .col-75 {
+            -ms-flex: 75%; /* IE10 */
+            flex: 75%;
+        }
+
+        .col-25,
+        .col-50,
+        .col-75 {
+            padding: 0 16px;
+        }
+
+        .container {
+            background-color: #d2eaee;
+            padding: 5px 20px 15px 20px;
+            border: 1px solid lightgrey;
+            border-radius: 3px;
+        }
+
+        input[type=text] {
+            width: 100%;
+            margin-bottom: 20px;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        label {
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .icon-container {
+            margin-bottom: 20px;
+            padding: 7px 0;
+            font-size: 24px;
+        }
+
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            width: 100%;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 17px;
+        }
+
+            .btn:hover {
+                background-color: #45a049;
+            }
+
+        a {
+            color: #2196F3;
+        }
+
+        hr {
+            border: 1px solid lightgrey;
+        }
+
+        span.price {
+            float: right;
+            color: grey;
+        }
+
+        /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (also change the direction - make the "cart" column go on top) */
+        @@media (max-width: 800px) {
+            .row {
+                flex-direction: column-reverse;
+            }
+
+            .col-25 {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <p></p>
+    
+        @*@using (Html.BeginForm("cart", "GMS", FormMethod.Post))
+        {*@
+    <div class="row">
+        
+            <div class="card">
+                <div class="col-55">
+                    <div class="container">
+
+                        <!--Form-->
+                        <form id="addressForm">
+                            <div class="row">
+                                <div class="col-50">
+                                    <h3>Billing Address</h3>
+                                    @using (Html.BeginForm("cart", "GMS", FormMethod.Post))
+                                    {
+                                        <label for="fname"><i class="fa fa-user"></i> Full Name</label>
+                                        <input type="text" id="fname" name="firstname" placeholder="Enter Your Name">
+                                        <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
+                                        <input type="text" id="adr" name="address" placeholder="Enter Your Address">
+                                        <label for="landmark"><i class="fa fa-envelope"></i> Landmark</label>
+                                        <input type="text" id="landmark" name="landmark" placeholder="Enter Landmark">
+                                        <label for="city"><i class="fa fa-institution"></i> Phone No</label>
+                                        <input type="text" id="phone_no" name="phone_no" placeholder="Enter Your Phone No.">                                      
+
+                                        <div class="row">
+                                            <div class="col-50">
+                                                <label>Pincode</label>
+                                                @*<input type="text" id="state" name="state" placeholder="Enter Your State">*@
+                                                @Html.DropDownListFor(model => model.pincode, Model.PincodeList, new { @class = "form-control", @readonly = "readonly" })
+                                            </div>
+                                            <div class="col-50">
+                                                <label>Place</label>
+                                                @*<input type="text" id="zip" name="zip" placeholder="Enter Place">*@
+                                                @Html.DropDownListFor(model => model.place, Model.PlaceList, "Select Place", new { @class = "form-control" })
+                                            </div>                                            
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                            <input type="submit" value="Continue to checkout" class="btn" onclick="cartsubmit()" >
+                        </form>
+                    </div>
+                </div>
+            </div>          
+        
+        <div class="col-25">
+            <div class="container">
+                <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b></b></span></h4>
+                <hr />
+                <div id="cart"></div>
+                <hr>
+                <p>Total <span class="price" style="color:black"><b id="total_price">0</b></span></p>
+
+            </div>
+        </div>
+    </div>        
+    
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js" integrity="sha512-3j3VU6WC5rPQB4Ld1jnLV7Kd5xr+cq9avvhwqzbH/taCRNURoeEpoPBK9pDyeukwSxwRPJ8fDgvYXd6SkaZ2TA==" crossorigin="anonymous"></script>
+<script type="text/javascript">
+
+    function updateCount(id, update) {
+        var total = parseFloat($("#total_price").html());
+
+        var count = parseInt($("#" + id).val());
+        if (count == 1 && update < 0) { return; }
+        count = count + update;
+        $("#" + id).val(count);
+        var price = parseFloat($("#up" + id).val());
+        $("#price" + id).html(count * price);
+        $("#total_price").html(total + (update * price));
+    }
+
+    $(document).ready(function () {
+        uniqueArray = $.cookie("cart").split(":").filter(function (item, pos, self) {
+            return self.indexOf(item) == pos;
+        })
+        for (var i = 0; i < uniqueArray.length; i++) {
+            console.log(uniqueArray[i]);
+            $.get("ProductDetails?item=" + uniqueArray[i], function (data) {
+                console.log(data);
+                add_str = '<p><img width="52px" height="52px" src="/Content/' + data[0].PRODUCT_IMAGE + '"> <a href="#">' + data[0].PRODUCT_NAME + ' </a> \
+                    <span>\
+                    <button class="btn btn-primary" style = "width:33px;" onclick = "updateCount(\'' + data[0].PRODUCT_ID + '\', -1)" >\
+                        <span>-</span>\
+                    </button>\
+                    <input type="text" min="1" readonly value="1" style="width:50px" id="' + data[0].PRODUCT_ID + '" />\
+                    <button class="btn btn-primary" style="width:33px;" onclick="updateCount(\'' + data[0].PRODUCT_ID + '\', 1)">\
+                        <span>+</span>\
+                    </button>\
+                    <input type="hidden" id="up' + data[0].PRODUCT_ID + '" value="' + data[0].PRODUCT_PRICE + '" > \
+                </span>'
+                    + '  <span class="price" id="price' + data[0].PRODUCT_ID + '">' + data[0].PRODUCT_PRICE + '</span></p>';
+
+    
+
+                $("#cart").append(add_str);
+                $("#total_price").html(parseFloat($("#total_price").html()) + parseFloat(data[0].PRODUCT_PRICE));
+
+            }, "json");
+        }
+        $(document).ready(function () {
+            $('.minus').click(function () {
+                var $input = $(this).parent().find('input');
+                var count = parseInt($input.val()) - 1;
+                count = count < 1 ? 1 : count;
+                $input.val(count);
+                $input.change();
+                return false;
+            });
+            $('.plus').click(function () {
+                var $input = $(this).parent().find('input');
+                $input.val(parseInt($input.val()) + 1);
+                $input.change();
+                return false;
+            });
+        });
+    });
+
+    function cartsubmit() {
+        event.preventDefault();
+        uniqueArray = $.cookie("cart").split(":").filter(function (item, pos, self) {
+            return self.indexOf(item) == pos;
+        });
+        qty = "";
+        for (var i = 0; i < uniqueArray.length; i++) {            
+            qty = qty + "item[" + i + "].product=" + uniqueArray[i] + "&item[" + i + "].count=" + $('#' + uniqueArray[i]).val() + "&"
+            //run it
+        }
+        $.post("./cart", qty + $("#addressForm").serialize(), function (data) { console.log(data); }, "json");
+        alert("Order Placed Sucessfully");
+        location.assign("./cart");
+    } 
+</script>
+
+
+
+</body>
+</html>
+
+
+

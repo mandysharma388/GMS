@@ -1,0 +1,154 @@
+﻿@model GMS_BOL.OrderListBOL
+@{
+    ViewBag.Title = "OrderList";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/plugins/daterangepicker/daterangepicker.css">
+<script src="~/plugins/moment/moment.min.js"></script>
+
+<!-- Input Masking -->
+<script src="~/plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
+<script src="~/plugins/daterangepicker/daterangepicker.js"></script>
+
+<!-- Select2 -->
+<script src="~/plugins/select2/js/select2.full.min.js"></script>
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<style>
+    fieldset {
+        display: block;
+        margin-inline-start: 2px;
+        margin-inline-end: 2px;
+        padding-block-start: 0.35em;
+        padding-inline-start: 0.75em;
+        padding-inline-end: 0.75em;
+        padding-block-end: 0.625em;
+        min-inline-size: min-content;
+        border-width: 2px;
+        border-style: groove;
+        border-color: threedface;
+        border-image: initial;
+        width: 100%;
+    }
+
+    legend {
+        display: block;
+        padding-left: 2px;
+        padding-right: 2px;
+        border: none;
+        width: auto;
+    }
+</style>
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Order List</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Order</a></li>
+                    <li class="breadcrumb-item active">List</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <fieldset>
+                                <legend>Search Orders:</legend>
+                                @using (Html.BeginForm("OrderList", "Orders", FormMethod.Post))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <div class="row">
+                                        <div class="col-md-3 marButtom-10">
+                                            <div class="form-group">
+                                                <label>Order Status</label>
+                                                @Html.DropDownListFor(model => model.Status, Model.StatusList, "--- Select Status ---", new { @class = "form-control", placeholder = "Expenditure No." })
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3 marButtom-10">
+                                            <div class="form-group">
+                                                <label>Order ID</label>
+                                                @Html.TextBoxFor(model => model.OrderID,new { @class = "form-control", placeholder = "Order ID" })
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 text-right top30">
+                                            <div class="form-group">
+                                                <button type="button" class="btn btn-danger" onclick="fxResetFieldValue()">Reset</button>
+                                                <button type="submit" class="btn btn-success" id="btnSearch">Search</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="row hidden" id="">
+                        <div class="col-12">
+                            <legend>Order List:</legend>
+                            <table id="showExptabledetails" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th class="custom-th text-center">Sr No.</th>
+                                        <th class="custom-th text-center">Order ID</th>
+                                        <th class="custom-th text-center">Product</th>
+                                        <th class="custom-th text-center">Quantity</th>
+                                        <th class="custom-th text-center">Total Amount</th>
+                                        <th class="custom-th text-center">Name</th>
+                                        <th class="custom-th text-center">Address</th>
+                                        <th class="custom-th text-center">Phone No.</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model.ListOrderDetails != null)
+                                    {
+                                        if (Model.ListOrderDetails.Count > 0)
+                                        {
+                                            int row = 1;
+                                            foreach (var item in Model.ListOrderDetails)
+                                            {
+                                                <tr>
+                                                    <td class="custom-th text-center">
+                                                       @(row)
+                                                     </td>
+                                                     <td class="custom-th">@(item.OrderID == null ? "" : item.OrderID)</td>
+                                                     <td class="custom-th">@(item.Product == null ? "" : item.Product)</td>
+                                                     <td class="custom-th text-right">@(item.Quantity == null ? "" : item.Quantity)</td>
+                                                     <td class="custom-th text-right">@(item.TotalPrice.ToString("0.00"))</td>
+                                                     <td class="custom-th">@(item.DeliveryName == null ? "" : item.DeliveryName)</td>
+                                                     <td class="custom-th">@(item.address == null ? "" : item.address)</td>
+                                                     <td class="custom-th">@(item.phoneNo == null ? "" : item.phoneNo)</td>                                                        
+                                                 </tr>
+                                                row = row + 1;
+                                            }
+                                        }
+                                    }
+                                    else
+                                    { }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</section>
+

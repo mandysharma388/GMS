@@ -1,0 +1,671 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GroMartDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="MSTR_DELIVERY_STATUS">
+          <Key>
+            <PropertyRef Name="STATUS_ID" />
+          </Key>
+          <Property Name="STATUS_ID" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="STATUS_NAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CREATED_ON" Type="datetime" Nullable="false" />
+          <Property Name="CREATED_BY" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="UPDATED_ON" Type="datetime" Nullable="false" />
+          <Property Name="UPDATED_BY" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ISACTIVE" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MSTR_PINCODE">
+          <Key>
+            <PropertyRef Name="PINCODE_ID" />
+          </Key>
+          <Property Name="PINCODE_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PINCODE_NO" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CREATED_BY" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CREATED_ON" Type="datetime" Nullable="false" />
+          <Property Name="UPDATED_BY" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UPDATED_ON" Type="datetime" Nullable="false" />
+          <Property Name="ISACTIVE" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MSTR_PLACE">
+          <Key>
+            <PropertyRef Name="PLACE_ID" />
+          </Key>
+          <Property Name="PLACE_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="REF_PINCODE_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PLACE_NAME" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CREATED_BY" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CREATED_ON" Type="datetime" Nullable="false" />
+          <Property Name="UPDATED_BY" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UPDATED_ON" Type="datetime" Nullable="false" />
+          <Property Name="ISACTIVE" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MSTR_PRODUCT">
+          <Key>
+            <PropertyRef Name="PRODUCT_ID" />
+          </Key>
+          <Property Name="PRODUCT_ID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="PRODUCT_NAME" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="PRODUCT_PRICE" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="PRODUCT_IMAGE" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="CREATED_BY" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CREATED_ON" Type="datetime" Nullable="false" />
+          <Property Name="UPDATED_BY" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UPDATED_ON" Type="datetime" Nullable="false" />
+          <Property Name="ISACTIVE" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MSTR_USER_ROLE">
+          <Key>
+            <PropertyRef Name="ROLE_ID" />
+          </Key>
+          <Property Name="ROLE_ID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ROLE_NAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CREATED_BY" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CREATED_ON" Type="datetime" Nullable="false" />
+          <Property Name="UPDATED_BY" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UPDATED_ON" Type="datetime" Nullable="false" />
+          <Property Name="ISACTIVE" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TRN_COUSTOMER_ORDER_DETAILS">
+          <Key>
+            <PropertyRef Name="ORDER_ID" />
+          </Key>
+          <Property Name="ORDER_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="REF_DELIVERY_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PRODUCT_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PRODUCT_QUANTITY" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PRODUCT_PRICE" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CREATED_ON" Type="datetime" Nullable="false" />
+          <Property Name="CREATED_BY" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ISACTIVE" Type="bit" Nullable="false" />
+          <Property Name="TOTAL_PRICE" Type="varchar" MaxLength="20" />
+          <Property Name="COUSTOMER_MOBILE_NO" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="TRN_DELIVERY_ADDRESS_DETAILS">
+          <Key>
+            <PropertyRef Name="DELIVERY_ID" />
+          </Key>
+          <Property Name="DELIVERY_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DELIVERY_ADDRESS" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="LANDMARK" Type="varchar" MaxLength="100" />
+          <Property Name="REF_PINCODE_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="REF_PLACE_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MOBILE_NO" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CREATED_ON" Type="datetime" Nullable="false" />
+          <Property Name="CREATED_BY" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ISACTIVE" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TRN_ORDER_LOG">
+          <Key>
+            <PropertyRef Name="ORDER_LOG_ID" />
+          </Key>
+          <Property Name="ORDER_LOG_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="REF_DELIVERY_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="REF_STATUS_ID" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="CREATED_ON" Type="datetime" Nullable="false" />
+          <Property Name="CREATED_BY" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ISACTIVE" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TRN_USERDETAILS">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FULL_NAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EMAIL_ID" Type="varchar" MaxLength="50" />
+          <Property Name="PHONE_NO" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="PASSWORD" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CREATED_BY" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CREATED_ON" Type="datetime" Nullable="false" />
+          <Property Name="UPDATED_BY" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UPDATED_ON" Type="datetime" Nullable="false" />
+          <Property Name="ISACTIVE" Type="bit" Nullable="false" />
+          <Property Name="REF_ROLE_ID" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <Association Name="FK__MSTR_PLAC__REF_P__2A4B4B5E">
+          <End Role="MSTR_PINCODE" Type="Self.MSTR_PINCODE" Multiplicity="1" />
+          <End Role="MSTR_PLACE" Type="Self.MSTR_PLACE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MSTR_PINCODE">
+              <PropertyRef Name="PINCODE_ID" />
+            </Principal>
+            <Dependent Role="MSTR_PLACE">
+              <PropertyRef Name="REF_PINCODE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_COUST__REF_D__35BCFE0A">
+          <End Role="TRN_DELIVERY_ADDRESS_DETAILS" Type="Self.TRN_DELIVERY_ADDRESS_DETAILS" Multiplicity="1" />
+          <End Role="TRN_COUSTOMER_ORDER_DETAILS" Type="Self.TRN_COUSTOMER_ORDER_DETAILS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRN_DELIVERY_ADDRESS_DETAILS">
+              <PropertyRef Name="DELIVERY_ID" />
+            </Principal>
+            <Dependent Role="TRN_COUSTOMER_ORDER_DETAILS">
+              <PropertyRef Name="REF_DELIVERY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_DELIV__REF_P__31EC6D26">
+          <End Role="MSTR_PINCODE" Type="Self.MSTR_PINCODE" Multiplicity="1" />
+          <End Role="TRN_DELIVERY_ADDRESS_DETAILS" Type="Self.TRN_DELIVERY_ADDRESS_DETAILS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MSTR_PINCODE">
+              <PropertyRef Name="PINCODE_ID" />
+            </Principal>
+            <Dependent Role="TRN_DELIVERY_ADDRESS_DETAILS">
+              <PropertyRef Name="REF_PINCODE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_DELIV__REF_P__32E0915F">
+          <End Role="MSTR_PLACE" Type="Self.MSTR_PLACE" Multiplicity="1" />
+          <End Role="TRN_DELIVERY_ADDRESS_DETAILS" Type="Self.TRN_DELIVERY_ADDRESS_DETAILS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MSTR_PLACE">
+              <PropertyRef Name="PLACE_ID" />
+            </Principal>
+            <Dependent Role="TRN_DELIVERY_ADDRESS_DETAILS">
+              <PropertyRef Name="REF_PLACE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_ORDER__REF_D__3A81B327">
+          <End Role="TRN_DELIVERY_ADDRESS_DETAILS" Type="Self.TRN_DELIVERY_ADDRESS_DETAILS" Multiplicity="1" />
+          <End Role="TRN_ORDER_LOG" Type="Self.TRN_ORDER_LOG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRN_DELIVERY_ADDRESS_DETAILS">
+              <PropertyRef Name="DELIVERY_ID" />
+            </Principal>
+            <Dependent Role="TRN_ORDER_LOG">
+              <PropertyRef Name="REF_DELIVERY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_ORDER__REF_S__3B75D760">
+          <End Role="MSTR_DELIVERY_STATUS" Type="Self.MSTR_DELIVERY_STATUS" Multiplicity="1" />
+          <End Role="TRN_ORDER_LOG" Type="Self.TRN_ORDER_LOG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MSTR_DELIVERY_STATUS">
+              <PropertyRef Name="STATUS_ID" />
+            </Principal>
+            <Dependent Role="TRN_ORDER_LOG">
+              <PropertyRef Name="REF_STATUS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_USERD__REF_R__3E52440B">
+          <End Role="MSTR_USER_ROLE" Type="Self.MSTR_USER_ROLE" Multiplicity="0..1" />
+          <End Role="TRN_USERDETAILS" Type="Self.TRN_USERDETAILS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MSTR_USER_ROLE">
+              <PropertyRef Name="ROLE_ID" />
+            </Principal>
+            <Dependent Role="TRN_USERDETAILS">
+              <PropertyRef Name="REF_ROLE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GroMartDBModelStoreContainer">
+          <EntitySet Name="MSTR_DELIVERY_STATUS" EntityType="Self.MSTR_DELIVERY_STATUS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MSTR_PINCODE" EntityType="Self.MSTR_PINCODE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MSTR_PLACE" EntityType="Self.MSTR_PLACE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MSTR_PRODUCT" EntityType="Self.MSTR_PRODUCT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MSTR_USER_ROLE" EntityType="Self.MSTR_USER_ROLE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRN_COUSTOMER_ORDER_DETAILS" EntityType="Self.TRN_COUSTOMER_ORDER_DETAILS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRN_DELIVERY_ADDRESS_DETAILS" EntityType="Self.TRN_DELIVERY_ADDRESS_DETAILS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRN_ORDER_LOG" EntityType="Self.TRN_ORDER_LOG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRN_USERDETAILS" EntityType="Self.TRN_USERDETAILS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__MSTR_PLAC__REF_P__2A4B4B5E" Association="Self.FK__MSTR_PLAC__REF_P__2A4B4B5E">
+            <End Role="MSTR_PINCODE" EntitySet="MSTR_PINCODE" />
+            <End Role="MSTR_PLACE" EntitySet="MSTR_PLACE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_COUST__REF_D__35BCFE0A" Association="Self.FK__TRN_COUST__REF_D__35BCFE0A">
+            <End Role="TRN_DELIVERY_ADDRESS_DETAILS" EntitySet="TRN_DELIVERY_ADDRESS_DETAILS" />
+            <End Role="TRN_COUSTOMER_ORDER_DETAILS" EntitySet="TRN_COUSTOMER_ORDER_DETAILS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_DELIV__REF_P__31EC6D26" Association="Self.FK__TRN_DELIV__REF_P__31EC6D26">
+            <End Role="MSTR_PINCODE" EntitySet="MSTR_PINCODE" />
+            <End Role="TRN_DELIVERY_ADDRESS_DETAILS" EntitySet="TRN_DELIVERY_ADDRESS_DETAILS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_DELIV__REF_P__32E0915F" Association="Self.FK__TRN_DELIV__REF_P__32E0915F">
+            <End Role="MSTR_PLACE" EntitySet="MSTR_PLACE" />
+            <End Role="TRN_DELIVERY_ADDRESS_DETAILS" EntitySet="TRN_DELIVERY_ADDRESS_DETAILS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_ORDER__REF_D__3A81B327" Association="Self.FK__TRN_ORDER__REF_D__3A81B327">
+            <End Role="TRN_DELIVERY_ADDRESS_DETAILS" EntitySet="TRN_DELIVERY_ADDRESS_DETAILS" />
+            <End Role="TRN_ORDER_LOG" EntitySet="TRN_ORDER_LOG" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_ORDER__REF_S__3B75D760" Association="Self.FK__TRN_ORDER__REF_S__3B75D760">
+            <End Role="MSTR_DELIVERY_STATUS" EntitySet="MSTR_DELIVERY_STATUS" />
+            <End Role="TRN_ORDER_LOG" EntitySet="TRN_ORDER_LOG" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_USERD__REF_R__3E52440B" Association="Self.FK__TRN_USERD__REF_R__3E52440B">
+            <End Role="MSTR_USER_ROLE" EntitySet="MSTR_USER_ROLE" />
+            <End Role="TRN_USERDETAILS" EntitySet="TRN_USERDETAILS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GroMartDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="MSTR_DELIVERY_STATUS">
+          <Key>
+            <PropertyRef Name="STATUS_ID" />
+          </Key>
+          <Property Name="STATUS_ID" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="STATUS_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CREATED_ON" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UPDATED_ON" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ISACTIVE" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TRN_ORDER_LOG" Relationship="Self.FK__TRN_ORDER__REF_S__3B75D760" FromRole="MSTR_DELIVERY_STATUS" ToRole="TRN_ORDER_LOG" />
+        </EntityType>
+        <EntityType Name="MSTR_PINCODE">
+          <Key>
+            <PropertyRef Name="PINCODE_ID" />
+          </Key>
+          <Property Name="PINCODE_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PINCODE_NO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CREATED_ON" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UPDATED_ON" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ISACTIVE" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="MSTR_PLACE" Relationship="Self.FK__MSTR_PLAC__REF_P__2A4B4B5E" FromRole="MSTR_PINCODE" ToRole="MSTR_PLACE" />
+          <NavigationProperty Name="TRN_DELIVERY_ADDRESS_DETAILS" Relationship="Self.FK__TRN_DELIV__REF_P__31EC6D26" FromRole="MSTR_PINCODE" ToRole="TRN_DELIVERY_ADDRESS_DETAILS" />
+        </EntityType>
+        <EntityType Name="MSTR_PLACE">
+          <Key>
+            <PropertyRef Name="PLACE_ID" />
+          </Key>
+          <Property Name="PLACE_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="REF_PINCODE_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PLACE_NAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CREATED_ON" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UPDATED_ON" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ISACTIVE" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="MSTR_PINCODE" Relationship="Self.FK__MSTR_PLAC__REF_P__2A4B4B5E" FromRole="MSTR_PLACE" ToRole="MSTR_PINCODE" />
+          <NavigationProperty Name="TRN_DELIVERY_ADDRESS_DETAILS" Relationship="Self.FK__TRN_DELIV__REF_P__32E0915F" FromRole="MSTR_PLACE" ToRole="TRN_DELIVERY_ADDRESS_DETAILS" />
+        </EntityType>
+        <EntityType Name="MSTR_PRODUCT">
+          <Key>
+            <PropertyRef Name="PRODUCT_ID" />
+          </Key>
+          <Property Name="PRODUCT_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRODUCT_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRODUCT_PRICE" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRODUCT_IMAGE" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CREATED_ON" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UPDATED_ON" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ISACTIVE" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MSTR_USER_ROLE">
+          <Key>
+            <PropertyRef Name="ROLE_ID" />
+          </Key>
+          <Property Name="ROLE_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ROLE_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CREATED_ON" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UPDATED_ON" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ISACTIVE" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TRN_USERDETAILS" Relationship="Self.FK__TRN_USERD__REF_R__3E52440B" FromRole="MSTR_USER_ROLE" ToRole="TRN_USERDETAILS" />
+        </EntityType>
+        <EntityType Name="TRN_COUSTOMER_ORDER_DETAILS">
+          <Key>
+            <PropertyRef Name="ORDER_ID" />
+          </Key>
+          <Property Name="ORDER_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="REF_DELIVERY_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRODUCT_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRODUCT_QUANTITY" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRODUCT_PRICE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CREATED_ON" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ISACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="TOTAL_PRICE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="COUSTOMER_MOBILE_NO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TRN_DELIVERY_ADDRESS_DETAILS" Relationship="Self.FK__TRN_COUST__REF_D__35BCFE0A" FromRole="TRN_COUSTOMER_ORDER_DETAILS" ToRole="TRN_DELIVERY_ADDRESS_DETAILS" />
+        </EntityType>
+        <EntityType Name="TRN_DELIVERY_ADDRESS_DETAILS">
+          <Key>
+            <PropertyRef Name="DELIVERY_ID" />
+          </Key>
+          <Property Name="DELIVERY_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DELIVERY_ADDRESS" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LANDMARK" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="REF_PINCODE_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="REF_PLACE_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MOBILE_NO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CREATED_ON" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ISACTIVE" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="MSTR_PINCODE" Relationship="Self.FK__TRN_DELIV__REF_P__31EC6D26" FromRole="TRN_DELIVERY_ADDRESS_DETAILS" ToRole="MSTR_PINCODE" />
+          <NavigationProperty Name="MSTR_PLACE" Relationship="Self.FK__TRN_DELIV__REF_P__32E0915F" FromRole="TRN_DELIVERY_ADDRESS_DETAILS" ToRole="MSTR_PLACE" />
+          <NavigationProperty Name="TRN_COUSTOMER_ORDER_DETAILS" Relationship="Self.FK__TRN_COUST__REF_D__35BCFE0A" FromRole="TRN_DELIVERY_ADDRESS_DETAILS" ToRole="TRN_COUSTOMER_ORDER_DETAILS" />
+          <NavigationProperty Name="TRN_ORDER_LOG" Relationship="Self.FK__TRN_ORDER__REF_D__3A81B327" FromRole="TRN_DELIVERY_ADDRESS_DETAILS" ToRole="TRN_ORDER_LOG" />
+        </EntityType>
+        <EntityType Name="TRN_ORDER_LOG">
+          <Key>
+            <PropertyRef Name="ORDER_LOG_ID" />
+          </Key>
+          <Property Name="ORDER_LOG_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="REF_DELIVERY_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="REF_STATUS_ID" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CREATED_ON" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ISACTIVE" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="MSTR_DELIVERY_STATUS" Relationship="Self.FK__TRN_ORDER__REF_S__3B75D760" FromRole="TRN_ORDER_LOG" ToRole="MSTR_DELIVERY_STATUS" />
+          <NavigationProperty Name="TRN_DELIVERY_ADDRESS_DETAILS" Relationship="Self.FK__TRN_ORDER__REF_D__3A81B327" FromRole="TRN_ORDER_LOG" ToRole="TRN_DELIVERY_ADDRESS_DETAILS" />
+        </EntityType>
+        <EntityType Name="TRN_USERDETAILS">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FULL_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EMAIL_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PHONE_NO" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PASSWORD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CREATED_ON" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UPDATED_ON" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ISACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="REF_ROLE_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MSTR_USER_ROLE" Relationship="Self.FK__TRN_USERD__REF_R__3E52440B" FromRole="TRN_USERDETAILS" ToRole="MSTR_USER_ROLE" />
+        </EntityType>
+        <Association Name="FK__TRN_ORDER__REF_S__3B75D760">
+          <End Role="MSTR_DELIVERY_STATUS" Type="Self.MSTR_DELIVERY_STATUS" Multiplicity="1" />
+          <End Role="TRN_ORDER_LOG" Type="Self.TRN_ORDER_LOG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MSTR_DELIVERY_STATUS">
+              <PropertyRef Name="STATUS_ID" />
+            </Principal>
+            <Dependent Role="TRN_ORDER_LOG">
+              <PropertyRef Name="REF_STATUS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MSTR_PLAC__REF_P__2A4B4B5E">
+          <End Role="MSTR_PINCODE" Type="Self.MSTR_PINCODE" Multiplicity="1" />
+          <End Role="MSTR_PLACE" Type="Self.MSTR_PLACE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MSTR_PINCODE">
+              <PropertyRef Name="PINCODE_ID" />
+            </Principal>
+            <Dependent Role="MSTR_PLACE">
+              <PropertyRef Name="REF_PINCODE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_DELIV__REF_P__31EC6D26">
+          <End Role="MSTR_PINCODE" Type="Self.MSTR_PINCODE" Multiplicity="1" />
+          <End Role="TRN_DELIVERY_ADDRESS_DETAILS" Type="Self.TRN_DELIVERY_ADDRESS_DETAILS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MSTR_PINCODE">
+              <PropertyRef Name="PINCODE_ID" />
+            </Principal>
+            <Dependent Role="TRN_DELIVERY_ADDRESS_DETAILS">
+              <PropertyRef Name="REF_PINCODE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_DELIV__REF_P__32E0915F">
+          <End Role="MSTR_PLACE" Type="Self.MSTR_PLACE" Multiplicity="1" />
+          <End Role="TRN_DELIVERY_ADDRESS_DETAILS" Type="Self.TRN_DELIVERY_ADDRESS_DETAILS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MSTR_PLACE">
+              <PropertyRef Name="PLACE_ID" />
+            </Principal>
+            <Dependent Role="TRN_DELIVERY_ADDRESS_DETAILS">
+              <PropertyRef Name="REF_PLACE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_USERD__REF_R__3E52440B">
+          <End Role="MSTR_USER_ROLE" Type="Self.MSTR_USER_ROLE" Multiplicity="0..1" />
+          <End Role="TRN_USERDETAILS" Type="Self.TRN_USERDETAILS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MSTR_USER_ROLE">
+              <PropertyRef Name="ROLE_ID" />
+            </Principal>
+            <Dependent Role="TRN_USERDETAILS">
+              <PropertyRef Name="REF_ROLE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_COUST__REF_D__35BCFE0A">
+          <End Role="TRN_DELIVERY_ADDRESS_DETAILS" Type="Self.TRN_DELIVERY_ADDRESS_DETAILS" Multiplicity="1" />
+          <End Role="TRN_COUSTOMER_ORDER_DETAILS" Type="Self.TRN_COUSTOMER_ORDER_DETAILS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRN_DELIVERY_ADDRESS_DETAILS">
+              <PropertyRef Name="DELIVERY_ID" />
+            </Principal>
+            <Dependent Role="TRN_COUSTOMER_ORDER_DETAILS">
+              <PropertyRef Name="REF_DELIVERY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_ORDER__REF_D__3A81B327">
+          <End Role="TRN_DELIVERY_ADDRESS_DETAILS" Type="Self.TRN_DELIVERY_ADDRESS_DETAILS" Multiplicity="1" />
+          <End Role="TRN_ORDER_LOG" Type="Self.TRN_ORDER_LOG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRN_DELIVERY_ADDRESS_DETAILS">
+              <PropertyRef Name="DELIVERY_ID" />
+            </Principal>
+            <Dependent Role="TRN_ORDER_LOG">
+              <PropertyRef Name="REF_DELIVERY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GroMartDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="MSTR_DELIVERY_STATUS" EntityType="Self.MSTR_DELIVERY_STATUS" />
+          <EntitySet Name="MSTR_PINCODE" EntityType="Self.MSTR_PINCODE" />
+          <EntitySet Name="MSTR_PLACE" EntityType="Self.MSTR_PLACE" />
+          <EntitySet Name="MSTR_PRODUCT" EntityType="Self.MSTR_PRODUCT" />
+          <EntitySet Name="MSTR_USER_ROLE" EntityType="Self.MSTR_USER_ROLE" />
+          <EntitySet Name="TRN_COUSTOMER_ORDER_DETAILS" EntityType="Self.TRN_COUSTOMER_ORDER_DETAILS" />
+          <EntitySet Name="TRN_DELIVERY_ADDRESS_DETAILS" EntityType="Self.TRN_DELIVERY_ADDRESS_DETAILS" />
+          <EntitySet Name="TRN_ORDER_LOG" EntityType="Self.TRN_ORDER_LOG" />
+          <EntitySet Name="TRN_USERDETAILS" EntityType="Self.TRN_USERDETAILS" />
+          <AssociationSet Name="FK__TRN_ORDER__REF_S__3B75D760" Association="Self.FK__TRN_ORDER__REF_S__3B75D760">
+            <End Role="MSTR_DELIVERY_STATUS" EntitySet="MSTR_DELIVERY_STATUS" />
+            <End Role="TRN_ORDER_LOG" EntitySet="TRN_ORDER_LOG" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MSTR_PLAC__REF_P__2A4B4B5E" Association="Self.FK__MSTR_PLAC__REF_P__2A4B4B5E">
+            <End Role="MSTR_PINCODE" EntitySet="MSTR_PINCODE" />
+            <End Role="MSTR_PLACE" EntitySet="MSTR_PLACE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_DELIV__REF_P__31EC6D26" Association="Self.FK__TRN_DELIV__REF_P__31EC6D26">
+            <End Role="MSTR_PINCODE" EntitySet="MSTR_PINCODE" />
+            <End Role="TRN_DELIVERY_ADDRESS_DETAILS" EntitySet="TRN_DELIVERY_ADDRESS_DETAILS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_DELIV__REF_P__32E0915F" Association="Self.FK__TRN_DELIV__REF_P__32E0915F">
+            <End Role="MSTR_PLACE" EntitySet="MSTR_PLACE" />
+            <End Role="TRN_DELIVERY_ADDRESS_DETAILS" EntitySet="TRN_DELIVERY_ADDRESS_DETAILS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_USERD__REF_R__3E52440B" Association="Self.FK__TRN_USERD__REF_R__3E52440B">
+            <End Role="MSTR_USER_ROLE" EntitySet="MSTR_USER_ROLE" />
+            <End Role="TRN_USERDETAILS" EntitySet="TRN_USERDETAILS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_COUST__REF_D__35BCFE0A" Association="Self.FK__TRN_COUST__REF_D__35BCFE0A">
+            <End Role="TRN_DELIVERY_ADDRESS_DETAILS" EntitySet="TRN_DELIVERY_ADDRESS_DETAILS" />
+            <End Role="TRN_COUSTOMER_ORDER_DETAILS" EntitySet="TRN_COUSTOMER_ORDER_DETAILS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_ORDER__REF_D__3A81B327" Association="Self.FK__TRN_ORDER__REF_D__3A81B327">
+            <End Role="TRN_DELIVERY_ADDRESS_DETAILS" EntitySet="TRN_DELIVERY_ADDRESS_DETAILS" />
+            <End Role="TRN_ORDER_LOG" EntitySet="TRN_ORDER_LOG" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GroMartDBModelStoreContainer" CdmEntityContainer="GroMartDBEntities">
+          <EntitySetMapping Name="MSTR_DELIVERY_STATUS">
+            <EntityTypeMapping TypeName="GroMartDBModel.MSTR_DELIVERY_STATUS">
+              <MappingFragment StoreEntitySet="MSTR_DELIVERY_STATUS">
+                <ScalarProperty Name="STATUS_ID" ColumnName="STATUS_ID" />
+                <ScalarProperty Name="STATUS_NAME" ColumnName="STATUS_NAME" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_ON" ColumnName="UPDATED_ON" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="ISACTIVE" ColumnName="ISACTIVE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MSTR_PINCODE">
+            <EntityTypeMapping TypeName="GroMartDBModel.MSTR_PINCODE">
+              <MappingFragment StoreEntitySet="MSTR_PINCODE">
+                <ScalarProperty Name="PINCODE_ID" ColumnName="PINCODE_ID" />
+                <ScalarProperty Name="PINCODE_NO" ColumnName="PINCODE_NO" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="UPDATED_ON" ColumnName="UPDATED_ON" />
+                <ScalarProperty Name="ISACTIVE" ColumnName="ISACTIVE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MSTR_PLACE">
+            <EntityTypeMapping TypeName="GroMartDBModel.MSTR_PLACE">
+              <MappingFragment StoreEntitySet="MSTR_PLACE">
+                <ScalarProperty Name="PLACE_ID" ColumnName="PLACE_ID" />
+                <ScalarProperty Name="REF_PINCODE_ID" ColumnName="REF_PINCODE_ID" />
+                <ScalarProperty Name="PLACE_NAME" ColumnName="PLACE_NAME" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="UPDATED_ON" ColumnName="UPDATED_ON" />
+                <ScalarProperty Name="ISACTIVE" ColumnName="ISACTIVE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MSTR_PRODUCT">
+            <EntityTypeMapping TypeName="GroMartDBModel.MSTR_PRODUCT">
+              <MappingFragment StoreEntitySet="MSTR_PRODUCT">
+                <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
+                <ScalarProperty Name="PRODUCT_NAME" ColumnName="PRODUCT_NAME" />
+                <ScalarProperty Name="PRODUCT_PRICE" ColumnName="PRODUCT_PRICE" />
+                <ScalarProperty Name="PRODUCT_IMAGE" ColumnName="PRODUCT_IMAGE" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="UPDATED_ON" ColumnName="UPDATED_ON" />
+                <ScalarProperty Name="ISACTIVE" ColumnName="ISACTIVE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MSTR_USER_ROLE">
+            <EntityTypeMapping TypeName="GroMartDBModel.MSTR_USER_ROLE">
+              <MappingFragment StoreEntitySet="MSTR_USER_ROLE">
+                <ScalarProperty Name="ROLE_ID" ColumnName="ROLE_ID" />
+                <ScalarProperty Name="ROLE_NAME" ColumnName="ROLE_NAME" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="UPDATED_ON" ColumnName="UPDATED_ON" />
+                <ScalarProperty Name="ISACTIVE" ColumnName="ISACTIVE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRN_COUSTOMER_ORDER_DETAILS">
+            <EntityTypeMapping TypeName="GroMartDBModel.TRN_COUSTOMER_ORDER_DETAILS">
+              <MappingFragment StoreEntitySet="TRN_COUSTOMER_ORDER_DETAILS">
+                <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
+                <ScalarProperty Name="REF_DELIVERY_ID" ColumnName="REF_DELIVERY_ID" />
+                <ScalarProperty Name="PRODUCT_NAME" ColumnName="PRODUCT_NAME" />
+                <ScalarProperty Name="PRODUCT_QUANTITY" ColumnName="PRODUCT_QUANTITY" />
+                <ScalarProperty Name="PRODUCT_PRICE" ColumnName="PRODUCT_PRICE" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="ISACTIVE" ColumnName="ISACTIVE" />
+                <ScalarProperty Name="TOTAL_PRICE" ColumnName="TOTAL_PRICE" />
+                <ScalarProperty Name="COUSTOMER_MOBILE_NO" ColumnName="COUSTOMER_MOBILE_NO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRN_DELIVERY_ADDRESS_DETAILS">
+            <EntityTypeMapping TypeName="GroMartDBModel.TRN_DELIVERY_ADDRESS_DETAILS">
+              <MappingFragment StoreEntitySet="TRN_DELIVERY_ADDRESS_DETAILS">
+                <ScalarProperty Name="DELIVERY_ID" ColumnName="DELIVERY_ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="DELIVERY_ADDRESS" ColumnName="DELIVERY_ADDRESS" />
+                <ScalarProperty Name="LANDMARK" ColumnName="LANDMARK" />
+                <ScalarProperty Name="REF_PINCODE_ID" ColumnName="REF_PINCODE_ID" />
+                <ScalarProperty Name="REF_PLACE_ID" ColumnName="REF_PLACE_ID" />
+                <ScalarProperty Name="MOBILE_NO" ColumnName="MOBILE_NO" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="ISACTIVE" ColumnName="ISACTIVE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRN_ORDER_LOG">
+            <EntityTypeMapping TypeName="GroMartDBModel.TRN_ORDER_LOG">
+              <MappingFragment StoreEntitySet="TRN_ORDER_LOG">
+                <ScalarProperty Name="ORDER_LOG_ID" ColumnName="ORDER_LOG_ID" />
+                <ScalarProperty Name="REF_DELIVERY_ID" ColumnName="REF_DELIVERY_ID" />
+                <ScalarProperty Name="REF_STATUS_ID" ColumnName="REF_STATUS_ID" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="ISACTIVE" ColumnName="ISACTIVE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRN_USERDETAILS">
+            <EntityTypeMapping TypeName="GroMartDBModel.TRN_USERDETAILS">
+              <MappingFragment StoreEntitySet="TRN_USERDETAILS">
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="FULL_NAME" ColumnName="FULL_NAME" />
+                <ScalarProperty Name="EMAIL_ID" ColumnName="EMAIL_ID" />
+                <ScalarProperty Name="PHONE_NO" ColumnName="PHONE_NO" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="UPDATED_ON" ColumnName="UPDATED_ON" />
+                <ScalarProperty Name="ISACTIVE" ColumnName="ISACTIVE" />
+                <ScalarProperty Name="REF_ROLE_ID" ColumnName="REF_ROLE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
