@@ -103,7 +103,7 @@
                     <div class="row hidden" id="">
                         <div class="col-12">
                             <legend>Order List:</legend>
-                            <table id="showExptabledetails" class="table table-bordered table-hover">
+                            <table id="showOrderDetails" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
                                         <th class="custom-th text-center">Sr No.</th>
@@ -151,4 +151,16 @@
         </div>
     </div>
 </section>
+
+<script>
+    $('#showOrderDetails').DataTable({
+        "paging": true,
+        "lengthChange": true,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": true,
+        "responsive": true
+    });
+</script>
 

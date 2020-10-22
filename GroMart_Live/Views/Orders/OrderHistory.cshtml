@@ -1,0 +1,133 @@
+﻿@model GMS_BOL.OrderHistoryBOL
+@{
+    ViewBag.Title = "OrderHistory";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/plugins/daterangepicker/daterangepicker.css">
+<script src="~/plugins/moment/moment.min.js"></script>
+
+<!-- Input Masking -->
+<script src="~/plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
+<script src="~/plugins/daterangepicker/daterangepicker.js"></script>
+
+<!-- Select2 -->
+<script src="~/plugins/select2/js/select2.full.min.js"></script>
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<style>
+    fieldset {
+        display: block;
+        margin-inline-start: 2px;
+        margin-inline-end: 2px;
+        padding-block-start: 0.35em;
+        padding-inline-start: 0.75em;
+        padding-inline-end: 0.75em;
+        padding-block-end: 0.625em;
+        min-inline-size: min-content;
+        border-width: 2px;
+        border-style: groove;
+        border-color: threedface;
+        border-image: initial;
+        width: 100%;
+    }
+
+    legend {
+        display: block;
+        padding-left: 2px;
+        padding-right: 2px;
+        border: none;
+        width: auto;
+    }
+</style>
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Order History</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Order</a></li>
+                    <li class="breadcrumb-item active">History</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <fieldset>
+                                <legend>Your Orders :</legend>
+                                <table id="showOrderHistory" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th class="custom-th text-center">Order Date</th>
+                                        <th class="custom-th text-center">Product</th>
+                                        <th class="custom-th text-center">Quantity</th>
+                                        <th class="custom-th text-center">Total Amount</th>
+                                        <th class="custom-th text-center">Status</th>
+                                        <th class="custom-th text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                    <tbody>
+                                        @if (Model.ListOrderHistory != null)
+                                        {
+                                            if (Model.ListOrderHistory.Count > 0)
+                                            {
+                                                foreach (var item in Model.ListOrderHistory)
+                                                {
+                                                    <tr>
+                                                        <td class="custom-th text-center">@(item.OrderDate == null ? "" : item.OrderDate)</td>
+                                                        <td class="custom-th text-center">@(item.Product == null ? "" : item.Product)</td>
+                                                        <td class="custom-th text-right">@(item.Quantity == null ? "" : item.Quantity)</td>
+                                                        <td class="custom-th text-right">@(item.TotalPrice.ToString("0.00"))</td>
+                                                        <td class="custom-th text-center">@(item.Status == null ? "" : item.Status)</td>
+                                                        <td class="custom-th text-center"><a href="~/Orders/Cancel?ID=@Model.ListOrderHistory[0].OrderID" class="btn btn-danger">Cancel</a></td>
+                                                    </tr>
+                                                }
+                                            }
+                                            else
+                                            {
+
+                                            }
+                                        }
+                                        else
+                                        {
+
+                                        }
+                                    </tbody>
+                                </table>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    $('#showOrderHistory').DataTable({
+        "paging": true,
+        "lengthChange": true,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": true,
+        "responsive": true
+    });
+</script>

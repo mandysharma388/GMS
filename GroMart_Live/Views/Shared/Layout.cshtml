@@ -4,7 +4,7 @@
 
     //if (Session["username"] == null)
     //{
-    //    Response.Redirect("~/CMS/Login");
+    //    Response.Redirect("~/GMS/Dashboard");
     //}
 }
 
@@ -181,20 +181,35 @@
 
                         </li>
 
-                        @if (Session["ROLLID"].ToString() == "0001")
+                        @if (Session["USERNAME"].ToString() != null)
                         {
-                            <li class="nav-item has-treeview">
-                                <a href="~/Orders/OrderList" class="nav-link">
-                                    <i class="nav-icon fa fa-bell"></i>
-                                    <p>
-                                        Orders
-                                        <i class="right fas fa-angle-left"></i>
-                                    </p>
-                                </a>
+                           if (Session["ROLLID"].ToString() == "0001")
+                            {
+                                <li class="nav-item has-treeview">
+                                    <a href="~/Orders/OrderList" class="nav-link">
+                                        <i class="nav-icon fa fa-bell"></i>
+                                        <p>
+                                            Orders
+                                            <i class="right fas fa-angle-left"></i>
+                                        </p>
+                                    </a>
 
-                            </li>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item has-treeview">
+                                    <a href="~/Orders/OrderHistory" class="nav-link">
+                                        <i class="nav-icon fa fa-bell"></i>
+                                        <p>
+                                            Order History
+                                            <i class="right fas fa-angle-left"></i>
+                                        </p>
+                                    </a>
+                                </li>
+                            }
                         }
-
+                        @*else { }*@
 
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">

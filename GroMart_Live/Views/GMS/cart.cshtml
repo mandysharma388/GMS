@@ -170,8 +170,10 @@
                 <hr />
                 <div id="cart"></div>
                 <hr>
-                <p>Total <span class="price" style="color:black"><b id="total_price">0</b></span></p>
-
+                <p> Cart Total <span class="price" style="color:black"><b id="total_price">0</b></span></p>
+                <p> Delivery Charge <span class="price" style="color:black"><b id="delivery_price">0</b></span></p>
+                <hr />
+                <p> Total <span class="price" style="color:black"><b id="total">0</b></span></p>
             </div>
         </div>
     </div>        
@@ -180,11 +182,11 @@
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js" integrity="sha512-3j3VU6WC5rPQB4Ld1jnLV7Kd5xr+cq9avvhwqzbH/taCRNURoeEpoPBK9pDyeukwSxwRPJ8fDgvYXd6SkaZ2TA==" crossorigin="anonymous"></script>
-<script type="text/javascript">
-
+<script type="text/javascript">    
+    
     function updateCount(id, update) {
-        var total = parseFloat($("#total_price").html());
-
+        var total = parseFloat($("#total_price").html());      
+        
         var count = parseInt($("#" + id).val());
         if (count == 1 && update < 0) { return; }
         count = count + update;
@@ -192,17 +194,73 @@
         var price = parseFloat($("#up" + id).val());
         $("#price" + id).html(count * price);
         $("#total_price").html(total + (update * price));
+        
+        var b = parseFloat($("#total_price").html());
+        
+        if (b < 500) {
+            $("#delivery_price").html("50");
+        }
+
+        else if (b > 500 && b < 1200) {
+            $("#delivery_price").html("30");
+        }
+        else {
+            $("#delivery_price").html("0");
+        }        
+
+        var a = parseFloat($("#delivery_price").html());
+
+        $("#total").html(a + b);
+    };
+
+    function removeItem(id) {
+        //console.log("Remove item " + id);
+        var uniqueArray = $.cookie("cart").split(":").filter(function (item, pos, self) {
+            return self.indexOf(item) == pos;
+        });
+        newArray = "";
+        pref = ""
+        for (var i = 0; i < uniqueArray.length; i++) {
+            if (uniqueArray[i] != id) {
+                newArray = uniqueArray[i] + pref + newArray;
+                pref = ":";
+            }
+        }
+        $.cookie("cart", newArray);
+        location.reload();
+
+    };
+
+    
+
+    var b = $("#total_price").html();   
+    
+    if (b < 500) {
+        $("#delivery_price").html("50");
     }
+
+    else if (b > 500 && b < 1200) {
+        $("#delivery_price").html("30");
+    }
+    else {
+        $("#delivery_price").html("0");
+    }
+
+    var a = parseFloat($("#delivery_price").html());
+    
+    
+
 
     $(document).ready(function () {
         uniqueArray = $.cookie("cart").split(":").filter(function (item, pos, self) {
             return self.indexOf(item) == pos;
         })
         for (var i = 0; i < uniqueArray.length; i++) {
-            console.log(uniqueArray[i]);
+            //console.log(uniqueArray[i]);
             $.get("ProductDetails?item=" + uniqueArray[i], function (data) {
-                console.log(data);
+                //console.log(data);
                 add_str = '<p><img width="52px" height="52px" src="/Content/' + data[0].PRODUCT_IMAGE + '"> <a href="#">' + data[0].PRODUCT_NAME + ' </a> \
+                    <button class="btn btn-danger" style="width:33px; height:50px" onclick="removeItem(\'' + data[0].PRODUCT_ID + '\', -1)" >X</button>\
                     <span>\
                     <button class="btn btn-primary" style = "width:33px;" onclick = "updateCount(\'' + data[0].PRODUCT_ID + '\', -1)" >\
                         <span>-</span>\
@@ -213,15 +271,18 @@
                     </button>\
                     <input type="hidden" id="up' + data[0].PRODUCT_ID + '" value="' + data[0].PRODUCT_PRICE + '" > \
                 </span>'
-                    + '  <span class="price" id="price' + data[0].PRODUCT_ID + '">' + data[0].PRODUCT_PRICE + '</span></p>';
-
-    
+                    + '  <span class="price" id="price' + data[0].PRODUCT_ID + '">' + data[0].PRODUCT_PRICE + '</span></p>';    
 
                 $("#cart").append(add_str);
                 $("#total_price").html(parseFloat($("#total_price").html()) + parseFloat(data[0].PRODUCT_PRICE));
+                
+                $("#total").html(parseFloat($("#total").html()) + a + parseFloat(data[0].PRODUCT_PRICE));
 
-            }, "json");
-        }
+                a = 0;
+            }, "json");            
+        };
+        
+
         $(document).ready(function () {
             $('.minus').click(function () {
                 var $input = $(this).parent().find('input');
@@ -253,7 +314,8 @@
         $.post("./cart", qty + $("#addressForm").serialize(), function (data) { console.log(data); }, "json");
         alert("Order Placed Sucessfully");
         location.assign("./cart");
-    } 
+    }    
+    
 </script>
 
 
