@@ -1,0 +1,116 @@
+﻿@model GMS_BOL.AddProductBOL
+@{
+    ViewBag.Title = "AddProduct";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/plugins/daterangepicker/daterangepicker.css">
+<script src="~/plugins/moment/moment.min.js"></script>
+
+<!-- Input Masking -->
+<script src="~/plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
+<script src="~/plugins/daterangepicker/daterangepicker.js"></script>
+
+<!-- Select2 -->
+<script src="~/plugins/select2/js/select2.full.min.js"></script>
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<style>
+    fieldset {
+        display: block;
+        margin-inline-start: 2px;
+        margin-inline-end: 2px;
+        padding-block-start: 0.35em;
+        padding-inline-start: 0.75em;
+        padding-inline-end: 0.75em;
+        padding-block-end: 0.625em;
+        min-inline-size: min-content;
+        border-width: 2px;
+        border-style: groove;
+        border-color: threedface;
+        border-image: initial;
+        width: 100%;
+    }
+
+    legend {
+        display: block;
+        padding-left: 2px;
+        padding-right: 2px;
+        border: none;
+        width: auto;
+    }
+</style>
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Add Product</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Product</a></li>
+                    <li class="breadcrumb-item active">Add</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <fieldset>
+                                <legend>Add Product:</legend>
+                                @using (Html.BeginForm("AddProduct", "Admin", FormMethod.Post,new { @enctype="multipart/form-data"}))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <div class="row">
+                                        <div class="col-md-3 marButtom-10">
+                                            <div class="form-group">
+                                                <label>Product Name</label>
+                                                @Html.TextBoxFor(model => model.PRODUCT_NAME,new { @class = "form-control", placeholder = "Product Name" })
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3 marButtom-10">
+                                            <div class="form-group">
+                                                <label>Product Price</label>
+                                                @Html.TextBoxFor(model => model.PRODUCT_PRICE,new { @class = "form-control", placeholder = "Prouct Price" })
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3 marButtom-10">
+                                            <div class="form-group">
+                                                <label>Product Image</label>
+                                                @Html.TextBoxFor(model => model.PRODUCT_IMAGE,new { @class = "form-control", @type="file" })
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 text-right top30">
+                                            <div class="form-group">
+                                                <button type="button" class="btn btn-danger" onclick="fxResetFieldValue()">Reset</button>
+                                                <button type="submit" class="btn btn-success" id="btnSearch">ADD</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
