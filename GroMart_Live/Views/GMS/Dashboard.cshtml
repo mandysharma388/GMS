@@ -201,15 +201,61 @@
             <h2>Grocery</h2>
         }
 
+
+
+        <div style="margin:10px 3% 10px 5%" id="display_item">
+        </div>
+
+
+        <h2>Dairy Cakes & Bakery</h2>
+
+        <div style="margin:10px 3% 10px 5%" id="display_Dairy_Cakes_Bakery">
+        </div>
+
+
+        <h2>Snacks & Barnded Foods</h2>
+
+        <div style="margin:10px 3% 10px 5%" id="display_Snacks_Barnded_Foods">
+        </div>
+
+        <h2>Bevarages</h2>
+
+        <div style="margin:10px 3% 10px 5%" id="display_Bevarages">
+        </div>
+
+        <h2>Personal Care</h2>
+
+        <div style="margin:10px 3% 10px 5%" id="display_Personal_Care">
+        </div>
+
+        <h2>Home Care</h2>
+
+        <div style="margin:10px 3% 10px 5%" id="display_Home_Care">
+        </div>
+
+        <h2>Baby Care</h2>
+
+        <div style="margin:10px 3% 10px 5%" id="display_Baby_Care">
+        </div>
+
+        <h2>Feminine Essentials</h2>
+
+        <div style="margin:10px 3% 10px 5%" id="display_Feminine_Essentials">
+        </div>
+
+        <h2>Pooja Needs</h2>
+
+        <div style="margin:10px 3% 10px 5%" id="display_Pooja_Needs">
+        </div>
+
+        <h2>Namaz Needs</h2>
+
+        <div style="margin:10px 3% 10px 5%" id="display_Namaz_Needs">
+        </div>
+
+
+
     </div>
-    
-
-
-    <div style="margin:10px 3% 10px 5%" id="display_item">
-    </div>
-
-
-
 
 
     @*---------------------------------------JavaScript-------------------------------------------*@
@@ -230,7 +276,7 @@
             return template;
         }
         $(document).ready(function () {
-            $.get("GetProductList", function (data) {
+            $.get("GetProductList?cat=Grocery", function (data) {
                 html_app = "";
                 for (var i = 0; i < data.length; i++) {
                     console.log(data[i]);
@@ -238,6 +284,87 @@
                     html_app = html_app + renderTemplate(data[i].PRODUCT_ID, data[i].PRODUCT_NAME, data[i].PRODUCT_PRICE, data[i].PRODUCT_IMAGE);
                 }
                 $("#display_item").html(html_app);
+            }, "json");
+            $.get("GetProductList?cat=Dairy_Cakes_Bakery", function (data) {
+                html_app = "";
+                for (var i = 0; i < data.length; i++) {
+                    console.log(data[i]);
+
+                    html_app = html_app + renderTemplate(data[i].PRODUCT_ID, data[i].PRODUCT_NAME, data[i].PRODUCT_PRICE, data[i].PRODUCT_IMAGE);
+                }
+                $("#display_Dairy_Cakes_Bakery").html(html_app);
+            }, "json");
+            $.get("GetProductList?cat=Snacks_Barnded_Foods", function (data) {
+                html_app = "";
+                for (var i = 0; i < data.length; i++) {
+                    console.log(data[i]);
+
+                    html_app = html_app + renderTemplate(data[i].PRODUCT_ID, data[i].PRODUCT_NAME, data[i].PRODUCT_PRICE, data[i].PRODUCT_IMAGE);
+                }
+                $("#display_Snacks_Barnded_Foods").html(html_app);
+            }, "json");
+            $.get("GetProductList?cat=Bevarages", function (data) {
+                html_app = "";
+                for (var i = 0; i < data.length; i++) {
+                    console.log(data[i]);
+
+                    html_app = html_app + renderTemplate(data[i].PRODUCT_ID, data[i].PRODUCT_NAME, data[i].PRODUCT_PRICE, data[i].PRODUCT_IMAGE);
+                }
+                $("#display_Bevarages").html(html_app);
+            }, "json");
+            $.get("GetProductList?cat=Personal_Care", function (data) {
+                html_app = "";
+                for (var i = 0; i < data.length; i++) {
+                    console.log(data[i]);
+
+                    html_app = html_app + renderTemplate(data[i].PRODUCT_ID, data[i].PRODUCT_NAME, data[i].PRODUCT_PRICE, data[i].PRODUCT_IMAGE);
+                }
+                $("#display_Personal_Care").html(html_app);
+            }, "json");
+            $.get("GetProductList?cat=Home_Care", function (data) {
+                html_app = "";
+                for (var i = 0; i < data.length; i++) {
+                    console.log(data[i]);
+
+                    html_app = html_app + renderTemplate(data[i].PRODUCT_ID, data[i].PRODUCT_NAME, data[i].PRODUCT_PRICE, data[i].PRODUCT_IMAGE);
+                }
+                $("#display_Home_Care").html(html_app);
+            }, "json");
+            $.get("GetProductList?cat=Baby_Care", function (data) {
+                html_app = "";
+                for (var i = 0; i < data.length; i++) {
+                    console.log(data[i]);
+
+                    html_app = html_app + renderTemplate(data[i].PRODUCT_ID, data[i].PRODUCT_NAME, data[i].PRODUCT_PRICE, data[i].PRODUCT_IMAGE);
+                }
+                $("#display_Baby_Care").html(html_app);
+            }, "json");
+            $.get("GetProductList?cat=Feminine_Essentials", function (data) {
+                html_app = "";
+                for (var i = 0; i < data.length; i++) {
+                    console.log(data[i]);
+
+                    html_app = html_app + renderTemplate(data[i].PRODUCT_ID, data[i].PRODUCT_NAME, data[i].PRODUCT_PRICE, data[i].PRODUCT_IMAGE);
+                }
+                $("#display_Feminine_Essentials").html(html_app);
+            }, "json");
+            $.get("GetProductList?cat=Pooja_Needs", function (data) {
+                html_app = "";
+                for (var i = 0; i < data.length; i++) {
+                    console.log(data[i]);
+
+                    html_app = html_app + renderTemplate(data[i].PRODUCT_ID, data[i].PRODUCT_NAME, data[i].PRODUCT_PRICE, data[i].PRODUCT_IMAGE);
+                }
+                $("#display_Pooja_Needs").html(html_app);
+            }, "json");
+            $.get("GetProductList?cat=Namaz_Needs", function (data) {
+                html_app = "";
+                for (var i = 0; i < data.length; i++) {
+                    console.log(data[i]);
+
+                    html_app = html_app + renderTemplate(data[i].PRODUCT_ID, data[i].PRODUCT_NAME, data[i].PRODUCT_PRICE, data[i].PRODUCT_IMAGE);
+                }
+                $("#display_Namaz_Needs").html(html_app);
             }, "json");
         });
 @*-------------------------------------------------------------------------------------------------------*@

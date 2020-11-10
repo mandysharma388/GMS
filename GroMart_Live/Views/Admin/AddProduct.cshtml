@@ -2,6 +2,19 @@
 @{
     ViewBag.Title = "AddProduct";
     Layout = "~/Views/Shared/Layout.cshtml";
+
+    List<SelectListItem> CategoryData = new List<SelectListItem>();
+    CategoryData.Add(new SelectListItem { Text = "Grocery", Value = "Grocery" });
+    CategoryData.Add(new SelectListItem { Text = "Dairy Cakes & Bakery", Value = "Dairy_Cakes_Bakery" });
+    CategoryData.Add(new SelectListItem { Text = "Snacks & Barnded Foods", Value = "Snacks_Barnded_Foods" });
+    CategoryData.Add(new SelectListItem { Text = "Bevarages", Value = "Bevarages" });
+    CategoryData.Add(new SelectListItem { Text = "Personal Care", Value = "Personal_Care" });
+    CategoryData.Add(new SelectListItem { Text = "Home Care", Value = "Home_Care" });
+    CategoryData.Add(new SelectListItem { Text = "Baby Care", Value = "Baby_Care" });
+    CategoryData.Add(new SelectListItem { Text = "Feminine Essentials", Value = "Feminine_Essentials" });
+    CategoryData.Add(new SelectListItem { Text = "Pooja Needs", Value = "Pooja_Needs" });
+    CategoryData.Add(new SelectListItem { Text = "Namaz Needs", Value = "Namaz_Needs" });
+
 }
 
 <link rel="stylesheet" href="~/plugins/daterangepicker/daterangepicker.css">
@@ -93,6 +106,12 @@
                                             <div class="form-group">
                                                 <label>Product Image</label>
                                                 @Html.TextBoxFor(model => model.PRODUCT_IMAGE,new { @class = "form-control", @type="file" })
+                                            </div>
+                                        </div>
+                                         <div class="col-md-3 marButtom-10">
+                                            <div class="form-group">
+                                                <label>Product Category</label>
+                                                @Html.DropDownListFor(model => model.category,CategoryData,new { @class = "form-control", placeholder = "Prouct Category" })
                                             </div>
                                         </div>
 
